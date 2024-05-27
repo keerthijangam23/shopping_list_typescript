@@ -7,13 +7,15 @@ type arrayObject = {
 const itemArray = JSON.parse(localStorage.getItem("user")!) || [];
 var arrayLength = Number(itemArray.length);
 var oldValue = arrayLength;
-let itemCount = document.getElementById("TotalItemCount");
+const markedArray: string[] = [];
+let itemCount1 = document.getElementById("TotalItemCount");
+let itemCount2 = document.getElementById("markedCount");
 appendText();
 function removeText() {
-  itemCount!.textContent = "";
+  itemCount1!.textContent = "";
 }
 function appendText() {
-  itemCount!.append(String(arrayLength));
+  itemCount1!.append("TotalCount: " + String(arrayLength));
 }
 //creating unorderlist
 let inputValue = document.getElementById("add-item") as HTMLInputElement;
@@ -27,8 +29,8 @@ itemArray.forEach(function (val: arrayObject) {
 });
 
 // Add a "checked" symbol when clicking on a list item
-var list = document.querySelector("UL") as HTMLUListElement;
-list.addEventListener("click", function (event) {
+var list1 = document.querySelector("UL") as HTMLUListElement;
+list1.addEventListener("click", function (event) {
   if (event.target !== null) {
     if ((event.target as HTMLInputElement)!.tagName === "LI") {
       (event.target as HTMLInputElement)!.classList.toggle("checked");
@@ -55,7 +57,8 @@ function additem(val: arrayObject) {
   delButton.className = "delButton";
   delButton.appendChild(symbol);
   listContainer.appendChild(delButton);
-
+  removeText();
+  appendText();
   // adding delete functionality to the button
   delButton.onclick = function (event) {
     if (event.target !== null) {
@@ -66,6 +69,9 @@ function additem(val: arrayObject) {
       ul.removeChild(del);
       let index = itemArray.findIndex((val: arrayObject) => val.id === toDOId);
       itemArray.splice(index, 1);
+      arrayLength = arrayLength - 1;
+      removeText();
+      appendText();
       save();
     }
   };

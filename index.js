@@ -2,13 +2,15 @@
 var itemArray = JSON.parse(localStorage.getItem("user")) || [];
 var arrayLength = Number(itemArray.length);
 var oldValue = arrayLength;
-var itemCount = document.getElementById("TotalItemCount");
+var markedArray = [];
+var itemCount1 = document.getElementById("TotalItemCount");
+var itemCount2 = document.getElementById("markedCount");
 appendText();
 function removeText() {
-    itemCount.textContent = "";
+    itemCount1.textContent = "";
 }
 function appendText() {
-    itemCount.append(String(arrayLength));
+    itemCount1.append("TotalCount: " + String(arrayLength));
 }
 //creating unorderlist
 var inputValue = document.getElementById("add-item");
@@ -21,8 +23,8 @@ itemArray.forEach(function (val) {
     additem(val);
 });
 // Add a "checked" symbol when clicking on a list item
-var list = document.querySelector("UL");
-list.addEventListener("click", function (event) {
+var list1 = document.querySelector("UL");
+list1.addEventListener("click", function (event) {
     if (event.target !== null) {
         if (event.target.tagName === "LI") {
             event.target.classList.toggle("checked");
@@ -48,6 +50,8 @@ function additem(val) {
     delButton.className = "delButton";
     delButton.appendChild(symbol);
     listContainer.appendChild(delButton);
+    removeText();
+    appendText();
     // adding delete functionality to the button
     delButton.onclick = function (event) {
         if (event.target !== null) {
@@ -56,6 +60,9 @@ function additem(val) {
             ul.removeChild(del);
             var index = itemArray.findIndex(function (val) { return val.id === toDOId; });
             itemArray.splice(index, 1);
+            arrayLength = arrayLength - 1;
+            removeText();
+            appendText();
             save();
         }
     };
