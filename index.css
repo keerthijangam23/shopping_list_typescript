@@ -60,9 +60,34 @@ li.checked::before {
 }
 #TotalItemCount {
   margin: auto;
-  width: 60px;
+  width: 100px;
   border: 3px solid #73ad21;
   padding: 10px;
   margin-top: 30px;
   height: fit-content;
+}
+#unmarkedCount {
+  margin: auto;
+  width: 100px;
+  border: 3px solid #73ad21;
+  padding: 10px;
+  margin-top: 30px;
+  height: fit-content;
+}
+#markedCount {
+  margin: auto;
+  width: 100px;
+  border: 3px solid #73ad21;
+  padding: 10px;
+  margin-top: 30px;
+  height: fit-content;
+}
+#countContainer {
+  display: flex;
+  justify-content: space-between;
+  /* text-align: center; */
+  transform: translate(62%, 53%);
+  width: 790px;
+  height: 30px;
+  margin-bottom: 50px;
 }
