@@ -50,7 +50,7 @@ function additem(val: arrayObject) {
   item.id = "taskItem";
   item.textContent = toDO;
   listContainer.appendChild(item);
-  //addin delete button to each each individual div
+  //addingdelete button to  each individual div
   var delButton = document.createElement("span") as HTMLSpanElement;
   var symbol = document.createTextNode("\u00D7");
   delButton.id = String(toDOId);
