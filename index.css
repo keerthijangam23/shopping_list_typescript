@@ -1,0 +1,68 @@
+#wholeBody {
+  background-color: aliceblue;
+}
+#tasks {
+  list-style-type: none;
+}
+.listItem {
+  display: flex;
+  justify-content: space-evenly;
+  /* text-align: center; */
+  transform: translate(53%, 53%);
+  width: 790px;
+  height: 30px;
+  background-color: gray;
+  margin: 10px;
+  padding: 10px;
+}
+#heading {
+  /* display: flex; */
+  text-align: center;
+  color: gray;
+}
+.inputDiv {
+  text-align: center;
+}
+#add-item {
+  width: 800px;
+  height: 30px;
+  font-size: medium;
+  font-weight: 300;
+}
+#taskItem {
+  color: white;
+  font-weight: 500;
+}
+
+li.checked {
+  background-color: green;
+  color: #fff;
+  text-decoration: line-through;
+}
+li.checked::before {
+  content: "";
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+.delButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+  border: none;
+}
+#TotalItemCount {
+  margin: auto;
+  width: 60px;
+  border: 3px solid #73ad21;
+  padding: 10px;
+  margin-top: 30px;
+  height: fit-content;
+}
