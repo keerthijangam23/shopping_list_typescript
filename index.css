@@ -94,3 +94,11 @@ li.checked::before {
   height: 30px;
   margin-bottom: 50px;
 }
+#hideContainer {
+  margin: auto;
+  width: 160px;
+  border: 3px solid #73ad21;
+  padding: 10px;
+  margin-top: 100px;
+  height: fit-content;
+}
