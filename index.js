@@ -1,8 +1,6 @@
 //getting items from the local storage or array .
 var itemArray = JSON.parse(localStorage.getItem("user")) || [];
 var arrayLength = Number(itemArray.length);
-var oldValue = arrayLength;
-var markedArray = [];
 var itemCount1 = document.getElementById("TotalItemCount");
 var itemCount2 = document.getElementById("markedCount");
 appendText();
@@ -66,6 +64,19 @@ function additem(val) {
             save();
         }
     };
+    //adding hideButton event listner
+    var hideButton = document.getElementById("hideButton");
+    hideButton.addEventListener("click", function () {
+        var markedItems = document.querySelectorAll(".checked");
+        markedItems.forEach(function (item) {
+            if (hideButton.checked) {
+                item.style.display = "none";
+            }
+            else {
+                item.style.display = "block";
+            }
+        });
+    });
 }
 //adding eventlistner to the button
 var addItem = document.getElementById("add-item");

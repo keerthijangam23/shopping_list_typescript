@@ -73,6 +73,19 @@ function additem(val: arrayObject) {
       save();
     }
   };
+
+  //adding hideButton event listner
+  const hideButton = document.getElementById("hideButton") as HTMLInputElement;
+  hideButton.addEventListener("click", () => {
+    const markedItems = document.querySelectorAll(".checked");
+    markedItems.forEach((item) => {
+      if (hideButton.checked) {
+        (item as HTMLElement).style.display = "none";
+      } else {
+        (item as HTMLElement).style.display = "block";
+      }
+    });
+  });
 }
 
 //adding eventlistner to the button
