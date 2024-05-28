@@ -11,14 +11,14 @@
   transform: translate(53%, 53%);
   width: 790px;
   height: 30px;
-  background-color: gray;
+  background-color: rgb(128, 128, 128);
   margin: 10px;
   padding: 10px;
 }
 #heading {
   /* display: flex; */
   text-align: center;
-  color: gray;
+  color: rgb(128, 128, 128);
 }
 .inputDiv {
   text-align: center;
@@ -32,10 +32,12 @@
 #taskItem {
   color: white;
   font-weight: 500;
+  top: 20px;
+  margin-left: 50px;
 }
 
 li.checked {
-  background-color: green;
+  background-color: rgb(0, 255, 0);
   color: #fff;
   text-decoration: line-through;
 }
@@ -50,6 +52,7 @@ li.checked::before {
   transform: rotate(45deg);
   height: 15px;
   width: 7px;
+  text-decoration: line-through;
 }
 .delButton {
   position: absolute;
