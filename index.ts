@@ -6,8 +6,6 @@ type arrayObject = {
 //getting items from the local storage or array .
 const itemArray = JSON.parse(localStorage.getItem("user")!) || [];
 var arrayLength = Number(itemArray.length);
-var oldValue = arrayLength;
-const markedArray: string[] = [];
 let itemCount1 = document.getElementById("TotalItemCount");
 let itemCount2 = document.getElementById("markedCount");
 appendText();
