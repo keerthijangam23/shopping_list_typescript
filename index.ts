@@ -97,8 +97,8 @@ function additem(val: arrayObject) {
 }
 
 //adding eventlistner to the input element
-const addItem = document.getElementById("add-item") as HTMLInputElement;
-addItem.addEventListener("keypress", (e: KeyboardEvent) => {
+const addItemElement = document.getElementById("add-item") as HTMLInputElement;
+addItemElement.addEventListener("keypress", (e: KeyboardEvent) => {
   let val1 = inputValue.value;
   if (e.key === "Enter" && val1 !== "") {
     console.log("enter clicked");

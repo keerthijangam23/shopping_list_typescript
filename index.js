@@ -85,8 +85,8 @@ function additem(val) {
     };
 }
 //adding eventlistner to the input element
-var addItem = document.getElementById("add-item");
-addItem.addEventListener("keypress", function (e) {
+var addItemElement = document.getElementById("add-item");
+addItemElement.addEventListener("keypress", function (e) {
     var val1 = inputValue.value;
     if (e.key === "Enter" && val1 !== "") {
         console.log("enter clicked");
