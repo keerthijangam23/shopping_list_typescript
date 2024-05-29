@@ -8,13 +8,6 @@ const itemArray = JSON.parse(localStorage.getItem("user")!) || [];
 var arrayLength = Number(itemArray.length);
 let itemCount1 = document.getElementById("TotalItemCount");
 let itemCount2 = document.getElementById("markedCount");
-appendText();
-function removeText() {
-  itemCount1!.textContent = "";
-}
-function appendText() {
-  itemCount1!.append("TotalCount: " + String(arrayLength));
-}
 //creating unorderlist
 let inputValue = document.getElementById("add-item") as HTMLInputElement;
 var unorderList = document.createElement("ul") as HTMLUListElement;
@@ -25,6 +18,22 @@ document.body.appendChild(unorderList);
 itemArray.forEach(function (val: arrayObject) {
   additem(val);
 });
+function updateCount() {
+  const markedItemsCount = document.querySelectorAll(".checked").length;
+  const unmarkedItemsCount = arrayLength - markedItemsCount;
+
+  // Display counts
+  const markedCountElement = document.getElementById("markedCount");
+  const unmarkedCountElement = document.getElementById("unmarkedCount");
+  if (markedCountElement)
+    markedCountElement.textContent = "Marked: " + markedItemsCount;
+  if (unmarkedCountElement)
+    unmarkedCountElement.textContent = "Unmarked: " + unmarkedItemsCount;
+  if (itemCount1) itemCount1.textContent = "TotalCount: " + arrayLength;
+}
+
+// Call updateCount initially to display initial counts
+updateCount();
 
 // Add a "checked" symbol when clicking on a list item
 var list1 = document.querySelector("UL") as HTMLUListElement;
@@ -32,8 +41,22 @@ list1.addEventListener("click", function (event) {
   if (event.target !== null) {
     if ((event.target as HTMLInputElement)!.tagName === "LI") {
       (event.target as HTMLInputElement)!.classList.toggle("checked");
+      updateCount();
     }
   }
+});
+
+//adding hideButton event listner
+const hideButton = document.getElementById("hideButton") as HTMLInputElement;
+hideButton.addEventListener("click", () => {
+  const markedItems = document.querySelectorAll(".checked");
+  markedItems.forEach((item) => {
+    if (hideButton.checked) {
+      (item as HTMLElement).style.display = "none";
+    } else {
+      (item as HTMLElement).style.display = "block";
+    }
+  });
 });
 
 //adding each task to the div item and appedning it to the individual Li element ,appending the LI to unorderList
@@ -55,8 +78,7 @@ function additem(val: arrayObject) {
   delButton.className = "delButton";
   delButton.appendChild(symbol);
   listContainer.appendChild(delButton);
-  removeText();
-  appendText();
+
   // adding delete functionality to the button
   delButton.onclick = function (event) {
     if (event.target !== null) {
@@ -68,30 +90,15 @@ function additem(val: arrayObject) {
       let index = itemArray.findIndex((val: arrayObject) => val.id === toDOId);
       itemArray.splice(index, 1);
       arrayLength = arrayLength - 1;
-      removeText();
-      appendText();
+      updateCount();
       save();
     }
   };
-
-  //adding hideButton event listner
-  const hideButton = document.getElementById("hideButton") as HTMLInputElement;
-  hideButton.addEventListener("click", () => {
-    const markedItems = document.querySelectorAll(".checked");
-    markedItems.forEach((item) => {
-      if (hideButton.checked) {
-        (item as HTMLElement).style.display = "none";
-      } else {
-        (item as HTMLElement).style.display = "block";
-      }
-    });
-  });
 }
 
-//adding eventlistner to the button
+//adding eventlistner to the input element
 const addItem = document.getElementById("add-item") as HTMLInputElement;
 addItem.addEventListener("keypress", (e: KeyboardEvent) => {
-  // let keyboardEvent = <KeyboardEvent>e;
   let val1 = inputValue.value;
   if (e.key === "Enter" && val1 !== "") {
     console.log("enter clicked");
@@ -104,6 +111,7 @@ addItem.addEventListener("keypress", (e: KeyboardEvent) => {
     itemArray.push(x);
     inputValue.value = "";
     additem(x);
+    updateCount();
     save();
   }
 });
